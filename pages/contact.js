@@ -33,7 +33,7 @@ const Contact = () => {
           </div>
           <section className="mt-10 mb-28 md:mt-16 max-w-3xl mx-auto">
             <form
-              action="/?success=true"
+              action="/contact?success=true"
               name="contact"
               method="POST"
               data-netlify="true"
