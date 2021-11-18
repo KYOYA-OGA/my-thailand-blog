@@ -11,6 +11,10 @@ module.exports = {
         success: '#0070f3',
         cyan: '#79FFE1',
       },
+      fontFamily: {
+        kaisei: ['Kaisei Opti', 'serif'],
+      },
+
       spacing: {
         28: '7rem',
       },
@@ -36,4 +40,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

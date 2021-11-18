@@ -74,3 +74,7 @@
 .content audio {
   @apply w-full;
 }
+
+.content div {
+  @apply max-w-full;
+}
