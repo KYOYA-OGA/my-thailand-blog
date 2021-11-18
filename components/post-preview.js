@@ -8,7 +8,6 @@ export default function PostPreview({
   coverImage,
   date,
   excerpt,
-  author,
   slug,
 }) {
   return (
@@ -31,7 +30,7 @@ export default function PostPreview({
         )}
       </div>
       <div className="flex-grow h-full flex flex-col py-3 pb-8 px-5">
-        <h3 className="text-2xl mb-3 leading-snug">
+        <h3 className="text-2xl mb-3">
           <Link href={`/posts/${slug}`}>
             <a
               className="hover:text-success"

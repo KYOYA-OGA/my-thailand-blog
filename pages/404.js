@@ -23,7 +23,7 @@ const notFound = () => {
               alt="404"
             />
             <p className="mt-5">おっと…存在しないページのようです。</p>
-            <div className="mt-5 md:mt-8">
+            <div className="mt-8 md:mt-10">
               <Link href={`/`}>
                 <a className="btn-primary">ホームに戻る</a>
               </Link>

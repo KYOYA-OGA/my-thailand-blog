@@ -4,16 +4,16 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="brick-bg border-t border-accent-2">
+    <footer className="bg-[#1E293B] text-gray-300 border-t border-accent-2">
       <Container>
         <div className="py-10 grid grid-cols-1 md:grid-cols-2">
           <div>
-            <p>
-              ふらりとタイ移住したWeb系エンジニアの記録です。
+            <p className="leading-relaxed">
+              ふらりとタイ移住したWeb系エンジニアの記録。
               <br />
-              人生どうにかなるといいですね。
+              Everything will be alright in the end.
             </p>
-            <div className="flex items-center mt-3">
+            <div className="flex items-center mt-5">
               <Image
                 src="/images/kyoya.png"
                 width="100"

@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import Link from 'next/link';
+
 import Container from '../../components/container';
 import PostBody from '../../components/post-body';
-import MoreStories from '../../components/more-stories';
 import Header from '../../components/header';
 import PostHeader from '../../components/post-header';
 import SectionSeparator from '../../components/section-separator';
@@ -21,15 +22,17 @@ export default function Post({ post, posts, preview }) {
     return <ErrorPage statusCode={404} />;
   }
 
+  // console.log({ post });
+
   return (
     <Layout preview={preview}>
-      <Container>
+      <Container post>
         <Header />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article>
+            <article className="max-w-4xl mx-auto">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}
@@ -42,8 +45,8 @@ export default function Post({ post, posts, preview }) {
               <PostHeader
                 title={post.title}
                 coverImage={post.featuredImage?.node}
-                author={post.author?.node}
                 categories={post.categories}
+                date={post.date}
               />
               <PostBody content={post.content} />
               <footer>
@@ -51,8 +54,11 @@ export default function Post({ post, posts, preview }) {
               </footer>
             </article>
 
-            <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            <div className="my-12 mb-20 md:my-20 text-center">
+              <Link href={`/`}>
+                <a className="btn-primary">ホームに戻る</a>
+              </Link>
+            </div>
           </>
         )}
       </Container>
