@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 
 import { PER_PAGE } from '../lib/constants';
 

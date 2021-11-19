@@ -5,14 +5,16 @@ import Image from 'next/image';
 import Container from '../components/container';
 import Layout from '../components/layout';
 import Intro from '../components/intro';
+import Seo from '../components/seo';
 
 const notFound = () => {
   return (
     <>
       <Layout>
-        <Head>
-          <title>こっそり生きる。</title>
-        </Head>
+        <Seo
+          pageTitle={'404 - こっそり生きる。'}
+          pageImg={'/images/not-found.svg'}
+        />
         <Container>
           <Intro />
           <div className="text-center">

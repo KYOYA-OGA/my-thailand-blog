@@ -1,28 +1,50 @@
-import Head from 'next/head';
-// import Link from 'next/link';
-import { useState, useEffect } from 'react';
-
 import Container from '../components/container';
 import Layout from '../components/layout';
 import Intro from '../components/intro';
+import Seo from '../components/seo';
+
+import { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [success, setSuccess] = useState(false);
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    if (window.location.search.includes('success=true')) {
-      setSuccess(true);
-    }
-  }, []);
+  function sendEmail(e) {
+    e.preventDefault();
+
+    if (honeypot !== '') return;
+
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        e.target,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+      .then(
+        (result) => {
+          setSuccess(true);
+          setName('');
+          setEmail('');
+          setSubject('');
+          setMessage('');
+        },
+        (error) => {
+          console.log(error.text);
+          setError(true);
+        }
+      );
+  }
   return (
     <>
       <Layout>
-        <Head>
-          <title>こっそり生きる。</title>
-        </Head>
+        <Seo pageTitle={'お問い合わせ - こっそり生きる。'} />
         <Container>
           <Intro />
           <div className="md:text-center">
@@ -32,20 +54,15 @@ const Contact = () => {
             </p>
           </div>
           <section className="mt-10 mb-28 md:mt-16 max-w-3xl mx-auto">
-            <form
-              action="/contact?success=true"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Don’t fill this out if you’re human:{' '}
-                  <input name="bot-field" />
-                </label>
-              </p>
+            <form onSubmit={sendEmail}>
+              <input type="hidden" name="contactNumber" />
+              <input
+                type="hidden"
+                className="hidden"
+                name="honeypot"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
 
               <div>
                 <label
@@ -60,6 +77,8 @@ const Contact = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   name="fullName"
                   required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -89,6 +108,8 @@ const Contact = () => {
                     placeholder="test@test.com"
                     name="email"
                     required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -105,6 +126,8 @@ const Contact = () => {
                   id="subject"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   name="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                 />
               </div>
 
@@ -122,11 +145,20 @@ const Contact = () => {
                   placeholder="メッセージをどうぞ…"
                   name="message"
                   required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
 
               <div className="text-center mt-16">
-                <button type="submit" className="btn-secondary w-1/2 md:w-1/3">
+                <button
+                  type="submit"
+                  className={
+                    !name || !email || !message
+                      ? 'pointer-events-none bg-gray-300 btn-secondary w-1/2 md:w-1/3'
+                      : 'btn-secondary w-1/2 md:w-1/3'
+                  }
+                >
                   送信する
                 </button>
               </div>
@@ -134,6 +166,11 @@ const Contact = () => {
               {success && (
                 <p className="my-5 text-center text-success">
                   無事送信されました！
+                </p>
+              )}
+              {error && (
+                <p className="my-5 text-center text-red-500">
+                  送信に失敗しました。もう一度お試しください。
                 </p>
               )}
             </form>

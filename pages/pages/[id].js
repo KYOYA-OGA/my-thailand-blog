@@ -6,6 +6,7 @@ import { getAllPosts, getTotalPosts } from '../../lib/api';
 import Pagination from '../../components/pagination';
 import PostGrid from '../../components/post-grid';
 import { PER_PAGE } from '../../lib/constants';
+import Seo from '../../components/seo';
 
 export default function BlogPageId({ paginatedPosts }) {
   const totalCount = paginatedPosts.pageInfo.offsetPagination.total;
@@ -13,9 +14,7 @@ export default function BlogPageId({ paginatedPosts }) {
 
   return (
     <>
-      <Head>
-        <title>こっそり生きる。</title>
-      </Head>
+      <Seo />
       <Container>
         <Intro />
         {posts.length > 0 && <PostGrid posts={posts} />}
