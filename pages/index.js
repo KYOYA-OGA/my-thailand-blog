@@ -9,6 +9,7 @@ import Layout from '../components/layout';
 import { getAllPosts } from '../lib/api';
 import Pagination from '../components/pagination';
 import PostGrid from '../components/post-grid';
+import Seo from '../components/seo';
 
 export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   const totalCount = pageInfo.offsetPagination.total;
@@ -16,9 +17,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   return (
     <>
       <Layout preview={preview}>
-        <Head>
-          <title>こっそり生きる。</title>
-        </Head>
+        <Seo />
         <Container>
           <Intro />
           {edges.length > 0 && <PostGrid posts={edges} />}

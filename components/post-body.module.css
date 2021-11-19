@@ -36,7 +36,7 @@
 }
 
 .content h2 {
-  @apply text-2xl md:text-3xl mt-10 mb-2 leading-snug;
+  @apply text-2xl md:text-3xl mt-10 mb-2 leading-snug bg-gray-200 border-l-4 border-success p-3 shadow;
 }
 
 .content h3 {

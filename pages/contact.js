@@ -126,6 +126,7 @@ const Contact = () => {
 
               <div className="text-center mt-16">
                 <button
+                  type="submit"
                   className="btn-secondary w-1/2 md:w-1/3"
                   disabled={!name || !email || !message}
                 >
