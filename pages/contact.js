@@ -4,7 +4,8 @@ import Intro from '../components/intro';
 import Seo from '../components/seo';
 
 import { useState } from 'react';
-import emailjs from 'emailjs-com';
+import emailjs, { init } from 'emailjs-com';
+init(process.env.NEXT_PUBLIC_EMAILJS_USER_ID);
 
 const Contact = () => {
   const [success, setSuccess] = useState(false);

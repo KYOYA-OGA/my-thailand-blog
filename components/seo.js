@@ -15,7 +15,9 @@ const Seo = ({
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const description = pageDescription ? pageDescription : defaultDescription;
   const url = pagePath;
-  const imgUrl = pageImg || '/images/waterfall.jpg';
+  const imgUrl =
+    pageImg ||
+    'https://kyoyaoga.com/wp-content/uploads/2021/11/waterfall-s.jpg';
   const imgWidth = pageImgWidth ? pageImgWidth : 1280;
   const imgHeight = pageImgHeight ? pageImgHeight : 640;
 
