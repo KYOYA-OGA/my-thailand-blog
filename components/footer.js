@@ -34,7 +34,7 @@ export default function Footer() {
                 href="https://www.kyoya.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-success hover:opacity-80 ml-2"
+                className="font-semibold text-blue-400 hover:text-success ml-2"
               >
                 KyoyaDev Blog
               </a>
@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="flex items-center">
               <p>お問い合わせはこちらへ→</p>
               <Link href={`/contact`}>
-                <a className="font-semibold text-success hover:opacity-80 ml-2">
+                <a className="font-semibold text-blue-400 hover:text-success ml-2">
                   お問い合わせ
                 </a>
               </Link>

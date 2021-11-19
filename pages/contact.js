@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import Container from '../components/container';
@@ -8,9 +8,9 @@ import Intro from '../components/intro';
 
 const Contact = () => {
   const [success, setSuccess] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (window.location.search.includes('success=true')) {
@@ -37,8 +37,15 @@ const Contact = () => {
               name="contact"
               method="POST"
               data-netlify="true"
+              netlify-honeypot="bot-field"
             >
               <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>
+                  Don’t fill this out if you’re human:{' '}
+                  <input name="bot-field" />
+                </label>
+              </p>
 
               <div>
                 <label
@@ -53,8 +60,6 @@ const Contact = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   name="fullName"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -84,8 +89,6 @@ const Contact = () => {
                     placeholder="test@test.com"
                     name="email"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -119,17 +122,11 @@ const Contact = () => {
                   placeholder="メッセージをどうぞ…"
                   name="message"
                   required
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
 
               <div className="text-center mt-16">
-                <button
-                  type="submit"
-                  className="btn-secondary w-1/2 md:w-1/3"
-                  disabled={!name || !email || !message}
-                >
+                <button type="submit" className="btn-secondary w-1/2 md:w-1/3">
                   送信する
                 </button>
               </div>
