@@ -12,7 +12,7 @@ export default function PostPreview({
 }) {
   return (
     <div className="shadow-lg flex flex-col h-full rounded-md overflow-hidden">
-      <div className="">
+      <div className="text-center">
         {coverImage ? (
           <CoverImage title={title} coverImage={coverImage} slug={slug} />
         ) : (

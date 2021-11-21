@@ -56,7 +56,6 @@ const Contact = () => {
           </div>
           <section className="mt-10 mb-28 md:mt-16 max-w-3xl mx-auto">
             <form onSubmit={sendEmail}>
-              <input type="hidden" name="contactNumber" />
               <input
                 type="hidden"
                 className="hidden"
